@@ -4,6 +4,16 @@
 
 #include "day00.h"
 
+long int calculateFuel(int mass) {
+    long int fuelNeeded = 0;
+    long int fuelForMass = mass / 3 - 2;
+    while (fuelForMass > 0) {
+        fuelNeeded += fuelForMass;
+        fuelForMass = fuelForMass / 3 - 2;
+    }
+    return fuelNeeded;
+}
+
 void day00(bool part_two) {
     cout << "AoC day00: part " << (part_two ? "two" : "one") << endl;
     ifstream in("input/input00.txt");
@@ -11,7 +21,11 @@ void day00(bool part_two) {
         int mass;
         long int total = 0;
         while (in >> mass) {
-            total += mass / 3 - 2;
+            if (!part_two) {
+                total += mass / 3 - 2;
+            } else {
+                total += calculateFuel(mass);
+            }
         }
         cout << "Fuel needed: " << total << endl;
 
@@ -21,6 +35,6 @@ void day00(bool part_two) {
 }
 
 int main() {
-    day00(false);
+    day00(true);
     return 0;
 }
