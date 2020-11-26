@@ -24,7 +24,7 @@
 			"",
 			"#include \"day${TM_FILENAME_BASE/[^0-9]//gi}.h\"",
 			"",
-			"void day${TM_FILENAME_BASE/[^0-9]//gi}(bool part_two) {",
+			"void day${TM_FILENAME_BASE/[^0-9]//gi}(bool part_two = false) {",
 			"    cout << \"AoC day${TM_FILENAME_BASE/[^0-9]//gi}: part \" << (part_two ? \"two\" : \"one\") << endl;",
 			"    ifstream in(\"input/input${TM_FILENAME_BASE/[^0-9]//gi}.txt\");",
 			"    if (in.is_open()) {",

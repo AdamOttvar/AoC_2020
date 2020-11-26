@@ -14,7 +14,7 @@ long int calculateFuel(int mass) {
     return fuelNeeded;
 }
 
-void day00(bool part_two) {
+void day00(bool part_two = false) {
     cout << "AoC day00: part " << (part_two ? "two" : "one") << endl;
     ifstream in("input/input00.txt");
     if (in.is_open()) {
@@ -35,6 +35,7 @@ void day00(bool part_two) {
 }
 
 int main() {
+    day00();
     day00(true);
     return 0;
 }
