@@ -10,4 +10,8 @@
 
 using namespace std;
 
+namespace AoC {
+    double timeFunction(void (*pFunc)(bool), bool);
+} // namespace AoC
+
 #endif //_COMMON_H_

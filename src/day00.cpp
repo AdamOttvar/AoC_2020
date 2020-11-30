@@ -3,6 +3,11 @@
 //
 
 #include "day00.h"
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace AoC;
 
 long int calculateFuel(int mass) {
     long int fuelNeeded = 0;
@@ -14,7 +19,7 @@ long int calculateFuel(int mass) {
     return fuelNeeded;
 }
 
-void day00(bool part_two = false) {
+void day00(bool part_two) {
     cout << "AoC day00: part " << (part_two ? "two" : "one") << endl;
     ifstream in("input/input00.txt");
     if (in.is_open()) {
@@ -35,7 +40,13 @@ void day00(bool part_two = false) {
 }
 
 int main() {
-    day00();
-    day00(true);
+    //day00();
+    //day00(true);
+
+    double elapsedTime = timeFunction(day00, false);
+    cout << "Part 1 took: " << elapsedTime << " s" << endl;
+    elapsedTime = timeFunction(day00, true);
+    cout << "Part 2 took: " << elapsedTime << " s" << endl;
+
     return 0;
 }
