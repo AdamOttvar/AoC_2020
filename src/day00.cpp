@@ -2,7 +2,7 @@
 // Created by AdamOttvar on 2020-11-25
 //
 
-#include "day00.h"
+#include "common.h"
 #include <algorithm>
 #include <iostream>
 #include <vector>
