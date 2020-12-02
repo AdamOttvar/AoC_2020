@@ -11,7 +11,17 @@
                 "-o",
                 "${workspaceFolder}\\bin\\${fileBasenameNoExtension}.exe",
                 "-I",
-                "${workspaceFolder}\\include\\"
+                "${workspaceFolder}\\include\\",
+                "-I",
+                "${workspaceFolder}\\googletest\\googletest\\include\\",
+                "-L",
+                "${workspaceFolder}\\googletest\\googletest\\build\\",
+                "-l",
+                "gtestd",
+                "-l",
+                "gtest_maind",
+                "-l",
+                "pthread"
             ],
             "options": {
                 "cwd": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin"
@@ -24,6 +34,42 @@
                 "isDefault": true
             },
             "detail": "compiler: \"C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe\""
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe build test current day",
+            "command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-g",
+                "${workspaceFolder}\\src\\*.cpp",
+                "-o",
+                "${workspaceFolder}\\bin\\${fileBasenameNoExtension}.exe",
+                "-I",
+                "${workspaceFolder}\\include\\",
+                "-I",
+                "${workspaceFolder}\\googletest\\googletest\\include\\",
+                "-L",
+                "${workspaceFolder}\\googletest\\googletest\\build\\",
+                "-l",
+                "gtestd",
+                "-l",
+                "gtest_maind",
+                "-l",
+                "pthread",
+                "-D",
+                "AoC_RUN_TEST"
+            ],
+            "options": {
+                "cwd": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "compiler: \"C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe\"",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
         }
     ]
 }

@@ -2,7 +2,7 @@
 // Created by AdamOttvar on 2020-12-02
 //
 
-#include "common.h"
+#include "day02.h"
 #include "Password.h"
 #include <algorithm>
 #include <fstream>
@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-void day02(bool part_two = false) {
+int day02(bool part_two) {
     cout << "AoC day02: part " << (part_two ? "two" : "one") << endl;
     auto passwords = AoC::read_file<Password, vector<Password>>("input/input02.txt");
     int validPasswords = 0;
@@ -28,11 +28,17 @@ void day02(bool part_two = false) {
             }
         }
     }
-    cout << "Result: " << validPasswords << endl;
+
+    return validPasswords;
 }
 
+#ifndef AoC_RUN_TEST
 int main() {
-    day02(false);
-    day02(true);
+    int result;
+    result = day02(false);
+    cout << "Result: " << result << endl;
+    result = day02(true);
+    cout << "Result: " << result << endl;
     return 0;
 }
+#endif

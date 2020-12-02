@@ -2,14 +2,14 @@
 // Created by AdamOttvar on 2020-12-01
 //
 
-#include "common.h"
+#include "day01.h"
 #include <deque>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
-void day01(bool part_two) {
+int day01(bool part_two) {
     cout << "AoC day01: part " << (part_two ? "two" : "one") << endl;
     auto entries = AoC::read_file<int, vector<int>>("input/input01.txt");
     int result;
@@ -31,11 +31,16 @@ void day01(bool part_two) {
                         result = *vi * *vj * *vk;
     }
 
-    cout << "Result: " << result << endl;
+    return result;
 }
 
+#ifndef AoC_RUN_TEST
 int main() {
-    day01(false);
-    day01(true);
+    int result;
+    result = day01(false);
+    cout << "Result: " << result << endl;
+    result = day01(true);
+    cout << "Result: " << result << endl;
     return 0;
 }
+#endif

@@ -21,15 +21,15 @@ private:
     std::string password;
 
 public:
-    Password() : start(1), end(2), character('a'), password("password"){};
-    Password(int start, int end, char character, std::string password) : start(start), end(end), character(character), password(password){};
-    Password(int, int, std::string, std::string);
+    inline Password() : start(1), end(2), character('a'), password("password"){};
+    inline Password(int start, int end, char character, std::string password) : start(start), end(end), character(character), password(password){};
+    inline Password(int, int, std::string, std::string);
 
     // OTCP = Official Toboggan Corporate Policy
-    bool validatePassword(bool OTCP);
-    void print();
+    inline bool validatePassword(bool OTCP);
+    inline void print();
 
-    friend std::istream &operator>>(std::istream &input, Password &P);
+    inline friend std::istream &operator>>(std::istream &input, Password &P);
 };
 
 Password::Password(int start, int end, std::string charact, std::string password) {

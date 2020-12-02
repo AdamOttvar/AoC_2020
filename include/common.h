@@ -15,7 +15,7 @@ using namespace std;
 
 namespace AoC {
     // Function for timing functions
-    double timeFunction(void (*pFunc)(bool), bool part2) {
+    inline double timeFunction(void (*pFunc)(bool), bool part2) {
         chrono::time_point<chrono::steady_clock> start, end;
         start = chrono::steady_clock::now();
         pFunc(part2);

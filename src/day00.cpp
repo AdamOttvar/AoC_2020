@@ -39,6 +39,7 @@ void day00(bool part_two) {
     }
 }
 
+#ifndef AoC_RUN_TEST
 int main() {
     //day00();
     //day00(true);
@@ -50,3 +51,4 @@ int main() {
 
     return 0;
 }
+#endif
