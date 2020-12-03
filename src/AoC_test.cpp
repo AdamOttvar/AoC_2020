@@ -16,7 +16,13 @@ TEST(AoC_TEST, day02) {
 
 TEST(AoC_TEST, password) {
     ASSERT_TRUE(Password().validatePassword(false));
+    ASSERT_TRUE(Password(1, 3, 'a', "abcde").validatePassword(false));
+    ASSERT_FALSE(Password(1, 3, 'b', "cdefg").validatePassword(false));
+    ASSERT_TRUE(Password(1, 9, 'c', "ccccccccc").validatePassword(false));
     ASSERT_TRUE(Password().validatePassword(true));
+    ASSERT_TRUE(Password(1, 3, 'a', "abcde").validatePassword(true));
+    ASSERT_FALSE(Password(1, 3, 'b', "cdefg").validatePassword(true));
+    ASSERT_FALSE(Password(1, 9, 'c', "ccccccccc").validatePassword(true));
 }
 
 TEST(AoC_TEST, day03) {

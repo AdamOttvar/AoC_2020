@@ -65,5 +65,7 @@
         "${default}",
         "${workspaceFolder}/include",
         "${workspaceFolder}/src"
-    ]
+    ],
+    "testMate.cpp.test.executables": "{bin,Bin,BIN,build,Build,BUILD,out,Out,OUT}/**/*{test,Test,TEST}*",
+    "testMate.cpp.test.workingDirectory": "${workspaceFolder}"
 }
