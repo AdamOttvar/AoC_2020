@@ -1,6 +1,7 @@
 #include <gtest\gtest.h>
 #include "day01.h"
 #include "day02.h"
+#include "day03.h"
 #include "Password.h"
 
 TEST(AoC_TEST, day01) {
@@ -16,6 +17,11 @@ TEST(AoC_TEST, day02) {
 TEST(AoC_TEST, password) {
     ASSERT_TRUE(Password().validatePassword(false));
     ASSERT_TRUE(Password().validatePassword(true));
+}
+
+TEST(AoC_TEST, day03) {
+    ASSERT_EQ(242, day03(false));
+    ASSERT_EQ(2265549792, day03(true));
 }
 
 #ifdef AoC_RUN_TEST
