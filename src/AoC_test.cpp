@@ -2,6 +2,7 @@
 #include "day01.h"
 #include "day02.h"
 #include "day03.h"
+#include "day04.h"
 #include "Password.h"
 
 TEST(AoC_TEST, day01) {
@@ -28,6 +29,11 @@ TEST(AoC_TEST, password) {
 TEST(AoC_TEST, day03) {
     ASSERT_EQ(242, day03(false));
     ASSERT_EQ(2265549792, day03(true));
+}
+
+TEST(AoC_TEST, day04) {
+    ASSERT_EQ(242, day04(false));
+    ASSERT_EQ(186, day04(true));
 }
 
 #ifdef AoC_RUN_TEST

@@ -27,6 +27,8 @@ private:
     int cid;
     std::string rawData;
 
+    inline std::map<std::string, std::string> handleInput(std::string raw);
+
     inline bool validateHeight();
     inline bool validateHairColor();
     inline bool validateEyeColor();
@@ -35,7 +37,7 @@ private:
 
 public:
     inline Passport();
-    inline Passport(std::string);
+    inline Passport(std::string raw) : Passport(handleInput(raw)) {};
     inline Passport(std::map<std::string, std::string>);
     //inline Passport(int,int,int,std::string,std::string,std::string,unsigned long,int);
 
@@ -55,19 +57,6 @@ Passport::Passport() {
     ecl = "";
     pid = "";
     cid = 0;
-    rawData = "";
-}
-
-Passport::Passport(std::string raw) {
-    byr = 0;
-    iyr = 0;
-    eyr = 0;
-    hgt = "";
-    hcl = "";
-    ecl = "";
-    pid = "";
-    cid = 0;
-    rawData = raw;
 }
 
 Passport::Passport(std::map<std::string, std::string> inputData) {
@@ -84,15 +73,25 @@ Passport::Passport(std::map<std::string, std::string> inputData) {
     cid = atoi(inputData["cid"].c_str());
 }
 
-/*
-Passport::Passport(int byr, int iyr, int eyr, std::string hgt, std::string hcl, std::string ecl, unsigned long pid, int cid) {
-    this->start = start;
-    this->end = end;
-    this->password = password;
+inline std::map<std::string, std::string> Passport::handleInput(std::string rawInput) {
+    std::stringstream ss(rawInput);
+    std::string line;
 
-    this->character = charact[0];
+    std::map<std::string, std::string> structuredInput;
+    while (getline(ss, line, ' ')) {
+        if (line.empty())
+            continue;
+
+        std::stringstream ss2(line);
+        vector<std::string> valuePair;
+        while (getline(ss2, line, ':')) {
+            valuePair.push_back(line);
+        }
+        structuredInput.insert(pair<std::string, std::string>(valuePair[0], valuePair[1]));
+    }
+
+    return structuredInput;
 }
-*/
 
 bool Passport::validatePassportBasic(bool cidValid) {
     bool passwordValidates = false;
@@ -110,6 +109,37 @@ bool Passport::validatePassportBasic(bool cidValid) {
     }
 
     passwordValidates = (missingFileds == 0) ? true : false;
+
+    return passwordValidates;
+}
+
+bool Passport::validatePassport(bool cidValid) {
+    bool passwordValidates = false;
+    int nonvalidFileds = 0;
+
+    nonvalidFileds += byr < 1920 || byr > 2002;
+    // cout << "byr: " << (byr < 1920 || byr > 2002) << ", " << std::flush;
+    nonvalidFileds += iyr < 2010 || iyr > 2020;
+    // cout << "iyr: " << (iyr < 2010 || iyr > 2020) << ", " << std::flush;
+    nonvalidFileds += eyr < 2020 || eyr > 2030;
+    // cout << "eyr: " << (eyr < 2020 || eyr > 2030) << ", " << std::flush;
+
+    nonvalidFileds += !Passport::validateHeight();
+    // cout << "hgt: " << !Passport::validateHeight() << ", " << std::flush;
+    nonvalidFileds += !Passport::validateHairColor();
+    // cout << "hcl: " << !Passport::validateHairColor() << ", " << std::flush;
+    nonvalidFileds += !Passport::validateEyeColor();
+    // cout << "ecl: " << !Passport::validateEyeColor() << ", " << std::flush;
+    nonvalidFileds += !Passport::validatePassportID();
+    // cout << "pid: " << !Passport::validatePassportID() << ", " << std::flush;
+
+    if (cidValid) {
+        nonvalidFileds += !Passport::validateCountryID();
+    }
+
+    // std::cout << "Fields:" << nonvalidFileds << std::endl;
+
+    passwordValidates = (nonvalidFileds == 0) ? true : false;
 
     return passwordValidates;
 }
@@ -157,36 +187,6 @@ inline bool Passport::validateCountryID(){
     return true;
 }
 
-bool Passport::validatePassport(bool cidValid) {
-    bool passwordValidates = false;
-    int nonvalidFileds = 0;
-
-    nonvalidFileds += byr < 1920 || byr > 2002;
-    // cout << "byr: " << (byr < 1920 || byr > 2002) << ", " << std::flush;
-    nonvalidFileds += iyr < 2010 || iyr > 2020;
-    // cout << "iyr: " << (iyr < 2010 || iyr > 2020) << ", " << std::flush;
-    nonvalidFileds += eyr < 2020 || eyr > 2030;
-    // cout << "eyr: " << (eyr < 2020 || eyr > 2030) << ", " << std::flush;
-
-    nonvalidFileds += !Passport::validateHeight();
-    // cout << "hgt: " << !Passport::validateHeight() << ", " << std::flush;
-    nonvalidFileds += !Passport::validateHairColor();
-    // cout << "hcl: " << !Passport::validateHairColor() << ", " << std::flush;
-    nonvalidFileds += !Passport::validateEyeColor();
-    // cout << "ecl: " << !Passport::validateEyeColor() << ", " << std::flush;
-    nonvalidFileds += !Passport::validatePassportID();
-    // cout << "pid: " << !Passport::validatePassportID() << ", " << std::flush;
-
-    if (cidValid) {
-        nonvalidFileds += !Passport::validateCountryID();
-    }
-
-    // std::cout << "Fields:" << nonvalidFileds << std::endl;
-
-    passwordValidates = (nonvalidFileds == 0) ? true : false;
-
-    return passwordValidates;
-}
 
 void Passport::print() {
     std::cout << "byr:" << byr << " " << std::flush;

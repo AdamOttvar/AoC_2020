@@ -14,29 +14,22 @@ int day04(bool part_two) {
     ifstream inFile("input/input04.txt");
     int result = 0;
     vector<Passport> passports;
+
     if (inFile.is_open()) {
         std::map<std::string, std::string> inputData;
         std::string line;
+        std::string inputLine;
+
         while (std::getline(inFile, line)) {
-            if (line.empty()) {
-                Passport newPass = Passport(inputData);
+            if (line.empty() || inFile.peek() == EOF) {
+                inputLine.append(" ");
+                inputLine.append(line);
+                Passport newPass = Passport(inputLine);
                 passports.push_back(newPass);
-                inputData.clear();
+                inputLine.clear();
             } else {
-                std::stringstream ss(line);
-                while (getline(ss, line, ' ')) {
-                    std::stringstream ss2(line);
-                    vector<std::string> valuePair;
-                    while (getline(ss2, line, ':')) {
-                        valuePair.push_back(line);
-                    }
-                    inputData.insert(pair<std::string, std::string>(valuePair[0], valuePair[1]));
-                }
-                if (inFile.peek() == EOF) {
-                    Passport newPass = Passport(inputData);
-                    passports.push_back(newPass);
-                    inputData.clear();
-                }
+                inputLine.append(" ");
+                inputLine.append(line);
             }
         }
 
