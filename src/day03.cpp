@@ -6,7 +6,9 @@
 #include <numeric>
 
 unsigned long day03(bool part_two) {
+#ifndef AoC_RUN_TEST
     cout << "AoC day03: part " << (part_two ? "two" : "one") << endl;
+#endif
     auto slopeMap = AoC::read_file<string, vector<string>>("input/input03.txt");
     vector<pair<int, int>> slopes{{1, 1}, {3, 1}, {5, 1}, {7, 1}, {1, 2}};
 

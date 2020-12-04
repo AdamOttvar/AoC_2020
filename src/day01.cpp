@@ -10,7 +10,9 @@
 using namespace std;
 
 int day01(bool part_two) {
+#ifndef AoC_RUN_TEST
     cout << "AoC day01: part " << (part_two ? "two" : "one") << endl;
+#endif
     auto entries = AoC::read_file<int, vector<int>>("input/input01.txt");
     int result;
 

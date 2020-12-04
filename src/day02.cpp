@@ -11,7 +11,9 @@
 #include <vector>
 
 int day02(bool part_two) {
+#ifndef AoC_RUN_TEST
     cout << "AoC day02: part " << (part_two ? "two" : "one") << endl;
+#endif
     auto passwords = AoC::read_file<Password, vector<Password>>("input/input02.txt");
     int validPasswords = 0;
 
