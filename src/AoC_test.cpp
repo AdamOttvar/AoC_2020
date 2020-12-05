@@ -1,9 +1,10 @@
-#include <gtest\gtest.h>
+#include "Password.h"
 #include "day01.h"
 #include "day02.h"
 #include "day03.h"
 #include "day04.h"
-#include "Password.h"
+#include "day05.h"
+#include <gtest\gtest.h>
 
 TEST(AoC_TEST, day01) {
     ASSERT_EQ(1019571, day01(false));
@@ -34,6 +35,11 @@ TEST(AoC_TEST, day03) {
 TEST(AoC_TEST, day04) {
     ASSERT_EQ(242, day04(false));
     ASSERT_EQ(186, day04(true));
+}
+
+TEST(AoC_TEST, day05) {
+    ASSERT_EQ(848, day05(false));
+    ASSERT_EQ(682, day05(true));
 }
 
 #ifdef AoC_RUN_TEST
