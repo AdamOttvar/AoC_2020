@@ -49,6 +49,8 @@ int day04(bool part_two) {
 #ifndef AoC_RUN_TEST
 int main() {
     int result;
+    result = day04(false);
+    cout << "Result: " << result << endl;
     result = day04(true);
     cout << "Result: " << result << endl;
     return 0;
