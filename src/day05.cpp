@@ -3,6 +3,7 @@
 //
 
 #include "day05.h"
+#include <algorithm>
 #include <iterator>
 #include <math.h>
 #include <set>
@@ -17,49 +18,22 @@ int day05(bool part_two) {
 
     int result = 0;
     for (auto bp : boardingPasses) {
-        int maxRow = 127;
-        int minRow = 0;
-        int maxCol = 7;
-        int minCol = 0;
-        for (auto c : bp) {
-            if (c == 'F') {
-                maxRow -= ceil((maxRow - minRow) / 2.0);
-            } else if (c == 'B') {
-                minRow += ceil((maxRow - minRow) / 2.0);
-            } else if (c == 'L') {
-                maxCol -= ceil((maxCol - minCol) / 2.0);
-            } else if (c == 'R') {
-                minCol += ceil((maxCol - minCol) / 2.0);
-            } else {
-                cerr << "Wrong char!!!" << endl;
-            }
-        }
-        if (minRow != maxRow || minCol != maxCol) {
-            cerr << "Error in calculation!" << endl;
-            cout << "min: " << minRow << " max: " << maxRow << endl;
-            cout << "min: " << minCol << " max: " << maxCol << endl;
-            return result;
-        }
-        int row = maxRow;
-        int col = maxCol;
-
+        string rowString = bp.substr(0, 7);
+        string colString = bp.substr(7, 3);
+        replace(rowString.begin(), rowString.end(), 'F', '0');
+        replace(rowString.begin(), rowString.end(), 'B', '1');
+        replace(colString.begin(), colString.end(), 'L', '0');
+        replace(colString.begin(), colString.end(), 'R', '1');
+        int row = stoi(rowString, nullptr, 2);
+        int col = stoi(colString, nullptr, 2);
         int seatID = row * 8 + col;
         seatIDs.insert(seatID);
-
-        if (!part_two) {
-            if (seatID > result)
-                result = seatID;
-        }
     }
-    if (part_two) {
-        result = 0;
-        for (auto sId : seatIDs) {
-            auto pos = seatIDs.find(sId + 1);
-            if (pos == seatIDs.end()) {
-                result = sId + 1;
-                return result;
-            }
-        }
+
+    if (!part_two) {
+        result = *seatIDs.rbegin();
+    } else {
+        result = *adjacent_find(seatIDs.begin(), seatIDs.end(), [](int a, int b) { return (a + 1) != b; }) + 1;
     }
     return result;
 }
@@ -67,6 +41,8 @@ int day05(bool part_two) {
 #ifndef AoC_RUN_TEST
 int main() {
     int result;
+    result = day05(false);
+    cout << "Result: " << result << endl;
     result = day05(true);
     cout << "Result: " << result << endl;
     return 0;
