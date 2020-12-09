@@ -72,7 +72,9 @@ long checkColorChildren(string color, map<string, vector<tuple<int, string>>> &l
 }
 
 int day07(bool part_two) {
+#ifndef AoC_RUN_TEST
     cout << "AoC day07: part " << (part_two ? "two" : "one") << endl;
+#endif
     string input = "input/input07.txt";
 
     map<string, set<string>> containedIn;

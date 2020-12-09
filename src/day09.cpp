@@ -7,7 +7,9 @@
 #include <math.h>
 
 int day09(bool part_two) {
+#ifndef AoC_RUN_TEST
     cout << "AoC day09: part " << (part_two ? "two" : "one") << endl;
+#endif
     int result = 0;
     auto numbers = AoC::read_file<int, vector<int>>("input/input09.txt");
 

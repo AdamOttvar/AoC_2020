@@ -8,7 +8,9 @@
 #include <set>
 
 int day06(bool part_two) {
+#ifndef AoC_RUN_TEST
     cout << "AoC day06: part " << (part_two ? "two" : "one") << endl;
+#endif
     ifstream inFile("input/input06.txt");
 
     int result = 0;

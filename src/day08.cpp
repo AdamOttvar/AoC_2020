@@ -52,7 +52,9 @@ bool runProgram(vector<pair<string, int>> &instructions, int &accumulator) {
 }
 
 int day08(bool part_two) {
+#ifndef AoC_RUN_TEST
     cout << "AoC day08: part " << (part_two ? "two" : "one") << endl;
+#endif
     vector<pair<string, int>> instructions;
     handleInput("input/input08.txt", instructions);
 
