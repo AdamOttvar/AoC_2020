@@ -8,6 +8,7 @@
 #include "day07.h"
 #include "day08.h"
 #include "day09.h"
+#include "day11.h"
 #include <gtest\gtest.h>
 
 TEST(AoC_TEST, day01) {
@@ -64,6 +65,11 @@ TEST(AoC_TEST, day08) {
 TEST(AoC_TEST, day09) {
     ASSERT_EQ(25918798, day09(false));
     ASSERT_EQ(3340942, day09(true));
+}
+
+TEST(AoC_TEST, day11) {
+    ASSERT_EQ(2093, day11(false));
+    ASSERT_EQ(1862, day11(true));
 }
 
 #ifdef AoC_RUN_TEST
