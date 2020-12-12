@@ -12,48 +12,43 @@ int day12(bool part_two) {
     auto instructions = AoC::read_file<string, vector<string>>("input/input12.txt");
     int xPos = 0;
     int yPos = 0;
+    int xWayp = 10;
+    int yWayp = 1;
     int direction = 1; // 0=north, 1=east, 2=south, 3=west
 
     for (auto instruction : instructions) {
         char action = instruction[0];
         int value = atoi(instruction.substr(1).c_str());
-        //cout << "Action: " << action << " Value: " << value << endl;
+        int oldX = xWayp;
+        int oldY = yWayp;
+
         switch (action) {
-        case 'N': 
-            yPos += value;
+        case 'N':
+            yWayp += value;
             break;
-        case 'S': 
-            yPos -= value;
+        case 'S':
+            yWayp -= value;
             break;
-        case 'E': 
-            xPos += value;
+        case 'E':
+            xWayp += value;
             break;
-        case 'W': 
-            xPos -= value;
+        case 'W':
+            xWayp -= value;
             break;
         case 'R':
             switch (value)
             {
             case 90:
-                direction++;
-                if (direction == 4)
-                    direction = 0;
+                xWayp = oldY;
+                yWayp = -oldX;
                 break;
             case 180:
-                direction += 2;
-                if (direction == 4)
-                    direction = 0;
-                else if (direction == 5)
-                    direction = 1;
+                xWayp = -oldX;
+                yWayp = -oldY;
                 break;
             case 270:
-                direction += 3;
-                if (direction == 4)
-                    direction = 0;
-                else if (direction == 5)
-                    direction = 1;
-                else if (direction == 6)
-                    direction = 2;
+                xWayp = -oldY;
+                yWayp = oldX;
                 break;
             default:
                 break;
@@ -62,55 +57,28 @@ int day12(bool part_two) {
         case 'L':
             switch (value) {
             case 90:
-                direction--;
-                if (direction == -1)
-                    direction = 3;
+                xWayp = -oldY;
+                yWayp = oldX;
                 break;
             case 180:
-                direction -= 2;
-                if (direction == -1)
-                    direction = 3;
-                else if (direction == -2)
-                    direction = 2;
+                xWayp = -oldX;
+                yWayp = -oldY;
                 break;
             case 270:
-                direction -= 3;
-                if (direction == -1)
-                    direction = 3;
-                else if (direction == -2)
-                    direction = 2;
-                else if (direction == -3)
-                    direction = 1;
+                xWayp = oldY;
+                yWayp = -oldX;
                 break;
             default:
                 break;
             }
             break;
-        case 'F': 
-            switch (direction)
-            {
-            case 0:
-                yPos += value;
-                break;
-            case 1:
-                xPos += value;
-                break;
-            case 2:
-                yPos -= value;
-                break;
-            case 3:
-                xPos -= value;
-                break;
-            default:
-                cerr << "Faulty direction!" << endl;
-                break;
-            }
+        case 'F':
+            xPos += value * xWayp;
+            yPos += value * yWayp;
             break;
         default:
             cerr << "Faulty action!" << endl;
         }
-
-        //cout << "X: " << xPos << " Y: " << yPos << " Dir: " << direction << endl;
     }
 
     return abs(xPos) + abs(yPos);
@@ -119,7 +87,7 @@ int day12(bool part_two) {
 #ifndef AoC_RUN_TEST
 int main() {
     int result;
-    result = day12(false);
+    result = day12(true);
     cout << "Result: " << result << endl;
     return 0;
 }
