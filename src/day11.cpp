@@ -44,7 +44,6 @@ int findNeighbors2(vector<string> &seatings, int x_pos, int y_pos) {
 #ifndef AoC_RUN_TEST
     cout << "AoC day11: part " << (part_two ? "two" : "one") << endl;
 #endif
-    ifstream in("input/input11.txt");
     auto seatMap = AoC::read_file<string, vector<string>>("input/input11.txt");
     auto currentMap = seatMap;
     auto previousMap = seatMap;

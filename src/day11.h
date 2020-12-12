@@ -7,6 +7,8 @@
 
 #include "common.h"
 
+int findNeighbors1(vector<string> &, int, int);
+int findNeighbors2(vector<string> &, int, int);
 int day11(bool part_two = false);
 
 #endif //_DAY11_H_
